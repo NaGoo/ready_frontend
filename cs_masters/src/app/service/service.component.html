@@ -1,0 +1,238 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <form class="container"  [formGroup]="service" >
+    <p>
+      <mat-toolbar class="c" >
+        <span><img src='https://www.readyassist.in/image/logo/readyassist.png'></span>
+      </mat-toolbar>
+    </p>
+    <div *ngIf="allow"  role="alert">
+      <strong style="font-size: 18px; color:red">Attention!!</strong><br>
+       <b style="font-size: 14px; color:black">Please _/\_ Fill atleast one of the charges.</b>         
+    </div><br><br>
+<div class="row">
+  
+   <div class="col-sm-6">
+    <mat-form-field appearance="fill" class="a">
+    <mat-label class="b">Service Category</mat-label>  
+    <input type="text"required formControlName="category" matInput [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let service of categories" [value]="service.value">
+        {{service.viewValue}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+ </div>
+
+
+   <div class="col-sm-6">
+    <mat-form-field appearance="fill" class="a">
+    <mat-label class="b">Service Code</mat-label>  
+    <input type="text" required formControlName="serviceCode" matInput [matAutocomplete]="abc" />
+    <mat-autocomplete #abc="matAutocomplete">
+      <mat-option *ngFor="let service of codes" [value]="service.value">
+        {{service.viewValue}}
+      </mat-option>
+    </mat-autocomplete>
+   </mat-form-field>
+  </div> 
+</div>
+
+  <div class="row" >
+    <div class="col-sm-4">
+      <mat-form-field class="a">
+        <mat-label class="b">Client</mat-label>
+          <mat-select [formControl]="bankCtrl"  #singleSelect>
+            <mat-option>
+              <ngx-mat-select-search  noEntriesFoundLabel="Not found"   [formControl]="bankFilterCtrl" placeholderLabel="search"></ngx-mat-select-search>
+            </mat-option>     
+            <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+              {{bank.name}} 
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+                
+    <div class="col-sm-4">
+      <mat-form-field class="a">
+        <mat-label class="b">Location</mat-label>
+          <mat-select [formControl]="bankCtrls"  #singleSelect>
+            <mat-option>
+              <ngx-mat-select-search   noEntriesFoundLabel="Not found"  [formControl]="bankFilterCtrls" placeholderLabel="search"></ngx-mat-select-search>
+            </mat-option>     
+            <mat-option *ngFor="let bank1 of filteredBank | async" [value]="bank1">
+              {{bank1.name}} 
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-4">
+      <mat-form-field class="a">
+        <mat-label class="b">Vehicle</mat-label>
+          <mat-select [formControl]="bankCtrlz"  #singleSelect>
+            <mat-option>
+              <ngx-mat-select-search  noEntriesFoundLabel="Not found"   [formControl]="bankFilterCtrlz" placeholderLabel="search"></ngx-mat-select-search>
+            </mat-option>     
+            <mat-option *ngFor="let bank2 of filteredBankz | async" [value]="bank2">
+              <span><b>{{bank2.make}} </b>{{bank2.model}} </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div  class="col-sm-6">
+      <mat-form-field appearance="fill" class="a">
+        <mat-label class="b">Lead Time</mat-label>
+        <mat-select required formControlName="leadTime">
+          <mat-option *ngFor="let service of leadtime"  [value]="service.value">
+             {{service.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-6" >
+      <mat-form-field appearance="fill" class="a">
+        <mat-label class="b">Interval Time</mat-label>
+        <mat-select required formControlName="intervalTime">
+          <mat-option *ngFor="let service of intervaltime"  [value]="service.value">
+            {{service.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field class="a">
+      <mat-label class="b">Description</mat-label>
+      <input matInput   
+       placeholder="description..."
+        autocomplete="off"
+         name="description" required
+         formControlName="description" >
+    </mat-form-field>
+    <div style="font-size: 12px; color: red;" 
+            *ngIf="description.invalid && (description.dirty || description.touched)"[hidden]="description.valid">
+    <div style="font-size: 14px;" *ngIf="description.errors.pattern">Symbols not allowed</div>
+</div>
+  </div>
+  
+  <div>
+    <mat-form-field class="a">
+      <mat-label class="b">Name</mat-label>
+      <input matInput  
+      
+       autocomplete="off" name="name" required
+        formControlName="name">
+        
+    </mat-form-field>
+    <div style="font-size: 12px; color: red;" 
+            *ngIf="name.invalid && (name.dirty || name.touched)"[hidden]="name.valid">
+        
+        <div style="font-size: 14px;" *ngIf="name.errors.pattern">Characters only</div>
+      </div>
+  </div>
+                    
+<div class="row">
+  <div class="col-sm-6">
+    <mat-form-field class="a">
+      <mat-label class="b"  value ="1">Day Charge</mat-label>
+      <input matInput 
+       autocomplete="off"   
+        formControlName="dayCharge" name="dayCharge">
+        
+    </mat-form-field>
+    <div style="font-size: 12px; color: red;" 
+            *ngIf="dayCharge.invalid && (dayCharge.dirty || dayCharge.touched)"[hidden]="dayCharge.valid">
+        
+        <div style="font-size: 14px;" *ngIf="dayCharge.errors.pattern">Greater than 0</div>
+
+      </div>
+  </div>
+  
+  <div  class="col-sm-6">
+    <mat-form-field class="a">
+      <mat-label class="b"  value ="1">Night Charge</mat-label>
+      <input matInput 
+      autocomplete="off" formControlName="nightCharge" name="nightCharge" >
+      
+    </mat-form-field>
+    <div style="font-size: 12px; color: red;" 
+            *ngIf="nightCharge.invalid &&  (nightCharge.dirty || nightCharge.touched)"[hidden]="nightCharge.valid">
+        
+        <div style="font-size: 14px;" *ngIf="nightCharge.errors.pattern">Greater than 0</div>
+
+      </div>
+  </div>
+  </div>
+  
+<div >
+  <mat-form-field >
+    <mat-label class="b">Tax</mat-label>
+    <input matInput required 
+    autocomplete="off" formControlName="tax" name="tax">
+    
+  </mat-form-field>
+  <div style="font-size: 12px; color: red;" 
+            *ngIf="tax.invalid && (tax.dirty || tax.touched)"[hidden]="tax.valid">
+        
+        <div style="font-size: 14px;" *ngIf="tax.errors.min">Inbetween [0.01-100]</div>
+        <div style="font-size: 14px;" *ngIf="tax.errors.pattern">numbers only</div>
+        <div style="font-size: 14px;" *ngIf="tax.errors.max">Inbetween [0.01-100]</div>
+        
+      </div>
+<div>
+  
+<div>
+ 
+  <section>
+    <mat-checkbox required  formControlName="displayToCustomer">Display to Customer</mat-checkbox>
+  </section>
+  
+  
+  
+
+</div>
+    <button mat-raised-button [disabled]="!service.valid" type="button" (click)=onSubmit(service.value) color="primary"  >Submit</button>
+</div><br><br>
+
+<div class="container">
+<div class="content">
+  <div >
+    <table class="table table-bordered table-striped mb-0">
+        <th style="font-size: 18px; color: black;  text-align: center;  background-color: rgb(250, 250, 36);">Name</th>
+        <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Status</th>
+        <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Client Id</th>
+        <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Location Id</th>
+        <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Vehicle Id</th>
+         <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Day Charge</th>
+        <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Night Charge</th>
+        <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Delete</th>
+
+      <tr *ngFor ="let service of lists  | paginate : {
+        id : 'listing_pagination',
+      itemsPerPage:5, 
+      currentPage : page,          
+      totalItems:totalRecords}">
+          <td style="font-size: 14px; text-align: center; color: black;"><b>{{service.name }}</b></td>
+          <td style="font-size: 14px; text-align: center; color: green;" *ngIf="service.isActive" ><b>Active</b></td> 
+          <td  style="font-size: 14px; text-align: center; color: red;"  *ngIf="!service.isActive" > <b>DeActive</b></td>
+          <td style="font-size: 14px; text-align: center; color: black;"><b>{{service.clientId }}</b></td>
+          <td style="font-size: 14px; text-align: center; color: black;"><b>{{service.locationId }}</b></td>
+          <td style="font-size: 14px; text-align: center; color: black;"><b>{{service.vehicleId }}</b></td>
+          <td style="font-size: 14px; text-align: center; color: black;"><b>{{service.dayCharge }}</b></td>
+          <td style="font-size: 14px; text-align: center; color: black;"><b>{{service.nightCharge }}</b></td>
+          <td>
+            <button style="margin-left: 33px;" mat-mini-fab color="secondary" type="button" (click)="onDelete(service.id,service.isActive)" aria-label="Example icon button with a delete icon">
+              <mat-icon *ngIf="service.isActive" style="color:red;" >delete</mat-icon>
+              <mat-icon *ngIf="!service.isActive" style="color:blue;">loop</mat-icon>
+                        </button></td>  
+                           </tr>
+  </table></div>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+
+</div>
+</div></div></form>

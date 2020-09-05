@@ -1,0 +1,89 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet"> 
+<form class="container" [formGroup]="client">
+  <p>
+    <mat-toolbar class="c" >
+      
+      <span><img src='https://www.readyassist.in/image/logo/readyassist.png'></span>
+    </mat-toolbar>   
+  </p>
+  <div class="row">
+    <div class="col-sm-6">              ​
+      <div *ngIf="isExist"  role="alert">
+        <strong style="font-size: 18px; color:red">Sorry :(</strong> name already Exist...           
+      </div>
+      
+
+      <div class="jumpotron">
+        <mat-form-field class="a">
+          <mat-label class="b">Name</mat-label>
+          <input matInput   placeholder="Enter your Name..." name= "name" autocomplete="off" formControlName="name" >
+        </mat-form-field>
+        <div style="font-size: 12px; color: red;" 
+            *ngIf="name.invalid && (name.dirty || name.touched)"[hidden]="name.valid">
+        <div *ngIf="name.errors.pattern">Characters only...</div>
+        <div *ngIf="name.errors.minlength">Min 3 characters...</div>
+
+      </div>
+      </div>   
+      
+      <div class="text-center">
+        <button  mat-raised-button [disabled]="!client.valid" type="button" (click)="onSubmit(client.value)" color="primary">{{title}}</button>
+      </div>  
+    </div>
+    
+
+    <div class="col-sm-6">
+      <div class="container">
+        <div class="content">
+          <div>
+            <div>
+              <!-- <mat-paginator [length]="100"
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            (page)="page"
+            (pageChange)="get()">
+</mat-paginator> -->
+
+            </div>
+            <table class="table table-bordered table-striped mb-0">
+             
+              <th style="font-size: 18px; text-align: center; color: black; background-color: rgb(250, 250, 36);">Name</th>
+              <th style="font-size: 18px; text-align: center; color: black; background-color: rgb(250, 250, 36);">Status</th>
+              <th style="font-size: 18px; text-align: center; color: black; background-color: rgb(250, 250, 36);">Activation</th> 
+              <th style="font-size: 18px; text-align: center; color: black;background-color: rgb(250, 250, 36);">Edit</th>         
+              <tr>
+                
+              </tr>
+              <tr *ngFor ="let client of lists | paginate : {
+                id : 'listing_pagination',
+              itemsPerPage:5, 
+              currentPage : page,          
+              totalItems:totalRecords}">
+                <td style="font-size: 14px; text-align: center; color: black;"><b>{{client.name }}</b></td>                                 
+                <td style="font-size: 14px; text-align: center; color: green;"  *ngIf="client.isActive" ><b>Active</b></td> 
+                <td  style="font-size: 14px; text-align: center; color: red;"  *ngIf="!client.isActive" > <b>DeActive</b></td> 
+                <td>                 
+                  <button style="margin-left: 33px;" mat-mini-fab color="secondary" (click)="onDelete(client.id,client.isActive)" aria-label="Example icon button with a delete icon">
+                    <mat-icon *ngIf="client.isActive" style="color:red; " >delete</mat-icon>
+                    <mat-icon *ngIf="!client.isActive" style="color:blue; ">loop</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button style="margin-left: 20px;" mat-mini-fab color="secondary" type="button"  (click)="onUpdate(client.id,client.name)" aria-label="Example icon button with a delete icon">
+                    <mat-icon style="color:blue;">create</mat-icon>
+                  </button></td>                  
+              </tr>
+              
+          </table></div>
+        <div>
+          <pagination-controls   id="listing_pagination"
+           maxSize="5"
+            directionLinks="true"
+            (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form> 
+
