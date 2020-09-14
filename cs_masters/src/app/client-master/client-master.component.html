@@ -63,7 +63,7 @@
                 <td style="font-size: 14px; text-align: center; color: green;"  *ngIf="client.isActive" ><b>Active</b></td> 
                 <td  style="font-size: 14px; text-align: center; color: red;"  *ngIf="!client.isActive" > <b>DeActive</b></td> 
                 <td>                 
-                  <button style="margin-left: 33px;" mat-mini-fab color="secondary" (click)="onDelete(client.id,client.isActive)" aria-label="Example icon button with a delete icon">
+                  <button style="margin-left: 33px;" mat-mini-fab color="secondary" type="button" (click)="onDelete(client.id,client.isActive)" aria-label="Example icon button with a delete icon">
                     <mat-icon *ngIf="client.isActive" style="color:red; " >delete</mat-icon>
                     <mat-icon *ngIf="!client.isActive" style="color:blue; ">loop</mat-icon>
                   </button>
