@@ -83,16 +83,13 @@ get(){
   }
 }
 //update
-onUpdate(a:any,b:any){
+onUpdate(a:any,b:any, isActive:boolean){
+  if(isActive){
   this.x=a;
   this.title="update";
   this.client.controls['name'].setValue(b);
   this.y=b;
- }
-//  delete(id:number){
-   
-  
-// }
+ }}
 
 //patch
 
