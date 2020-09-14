@@ -69,9 +69,10 @@
                   </button>
                 </td>
                 <td>
-                  <button style="margin-left: 20px;" mat-mini-fab color="secondary" type="button"  (click)="onUpdate(client.id,client.name)" aria-label="Example icon button with a delete icon">
-                    <mat-icon style="color:blue;">create</mat-icon>
-                  </button></td>                  
+                  <button style="margin-left: 20px;" mat-mini-fab color="secondary" type="button"  (click)="onUpdate(client.id,client.name,client.isActive)" aria-label="Example icon button with a delete icon">
+                    <mat-icon *ngIf="client.isActive"  style="color:blue;">create</mat-icon>
+                    <mat-icon *ngIf="!client.isActive" style="color:red; ">block</mat-icon>
+                  </button></td>                 
               </tr>
               
           </table></div>
