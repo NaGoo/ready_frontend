@@ -41,7 +41,7 @@
     <div class="col-sm-4">
       <mat-form-field class="a">
         <mat-label class="b">Client</mat-label>
-          <mat-select [formControl]="bankCtrl"  #singleSelect>
+          <mat-select required [formControl]="bankCtrl"  #singleSelect>
             <mat-option>
               <ngx-mat-select-search  noEntriesFoundLabel="Not found"   [formControl]="bankFilterCtrl" placeholderLabel="search"></ngx-mat-select-search>
             </mat-option>     
@@ -55,7 +55,7 @@
     <div class="col-sm-4">
       <mat-form-field class="a">
         <mat-label class="b">Location</mat-label>
-          <mat-select [formControl]="bankCtrls"  #singleSelect>
+          <mat-select required [formControl]="bankCtrls"  #singleSelect>
             <mat-option>
               <ngx-mat-select-search   noEntriesFoundLabel="Not found"  [formControl]="bankFilterCtrls" placeholderLabel="search"></ngx-mat-select-search>
             </mat-option>     
@@ -69,7 +69,7 @@
     <div class="col-sm-4">
       <mat-form-field class="a">
         <mat-label class="b">Vehicle</mat-label>
-          <mat-select [formControl]="bankCtrlz"  #singleSelect>
+          <mat-select required [formControl]="bankCtrlz"  #singleSelect>
             <mat-option>
               <ngx-mat-select-search  noEntriesFoundLabel="Not found"   [formControl]="bankFilterCtrlz" placeholderLabel="search"></ngx-mat-select-search>
             </mat-option>     
